@@ -5,17 +5,24 @@ import "./App.css";
 import { puppyList } from "./data";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [puppies, setPuppies] = useState(puppyList);
-
-  console.log(puppies);
+  const [featPupId, setFeatPupId] = useState(null);
 
   return (
     <>
-      <div>
+      <div className="App">
         {puppies.map((puppy) => {
-          return <p>{puppy.name}</p>;
+          function handleClick() {
+            setFeatPupId(puppy.id);
+          }
+
+          return (
+            <p onClick={handleClick} key={puppy.id}>
+              {puppy.name}
+            </p>
+          );
         })}
+        <p>{featPupId}</p>
       </div>
     </>
   );
